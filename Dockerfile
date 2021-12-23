@@ -24,3 +24,5 @@ RUN apt-get install npm -y \
     && n 12.18.4 \
     && mkdir /.npm \
     && chown $UID:$GID /.npm -R
+
+CMD php artisan serve --host=0.0.0.0 --port=$APP_PORT
