@@ -25,4 +25,4 @@ RUN apt-get install npm -y \
     && mkdir /.npm \
     && chown $UID:$GID /.npm -R
 
-CMD php artisan serve --host=0.0.0.0 --port=9000
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/nginx.conf > /etc/nginx/nginx.conf" && supervisord -c '/etc/supervisor/conf.d/supervisord.conf'
