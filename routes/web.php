@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::resource('/register', RegisterController::class);
+Route::get('/email/verify/{id}/{hash}', function () {
+    dd(request()->all());
+})->name('verification.verify');
+Route::resource('/login', LoginController::class);
+Route::get('/docs', function () {
+    return view('swagger.index');
 });
